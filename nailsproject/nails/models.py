@@ -21,8 +21,8 @@ class MainPage(models.Model):
 class Master(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя мастера')
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Фото мастера')
-    grade = models.CharField(max_length=50, verbose_name='Занимаемая должность')
-    experience = models.CharField(max_length=50, verbose_name='Стаж')
+    grade = models.CharField(max_length=50, verbose_name='Занимаемая должность', null=True)
+    experience = models.CharField(max_length=50, verbose_name='Стаж', null=True)
     rating = models.IntegerField(default=1, verbose_name='Рейтинг мастера') #нужно придумать что делать с рейтингом!
     description = models.TextField(max_length=500, verbose_name='О мастере')
 

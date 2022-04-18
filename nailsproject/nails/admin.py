@@ -6,7 +6,7 @@ class mainpageAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'title')
 
 class masterAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'photo', 'position', 'rating', 'description')
+    list_display = ('id', 'name', 'photo', 'grade', 'experience', 'rating', 'description')
     list_display_links = ('id', 'name')
 
 class serviceAdmin(admin.ModelAdmin):
