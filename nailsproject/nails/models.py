@@ -21,13 +21,13 @@ class MainPage(models.Model):
 class Master(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя мастера')
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Фото мастера')
-    grade = models.CharField(max_length=50, verbose_name='Занимаемая должность')
-    experience = models.CharField(max_length=50, verbose_name='Стаж')
+    grade = models.CharField(max_length=50, verbose_name='Занимаемая должность', null=True)
+    experience = models.CharField(max_length=50, verbose_name='Стаж', null=True)
     rating = models.IntegerField(default=1, verbose_name='Рейтинг мастера') #нужно придумать что делать с рейтингом!
     description = models.TextField(max_length=500, verbose_name='О мастере')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def get_absolute_url(self):
         return reverse('master', kwargs={'master_id': self.pk})
@@ -37,12 +37,10 @@ class Master(models.Model):
         verbose_name_plural = 'Мастера'
 
 class Service(models.Model):
-    title = models.CharField(max_length=50, verbose_name='Наименование услуги')
-    duration = models.DurationField(verbose_name='Продолжительность')
-    price = models.IntegerField(verbose_name='Цена')
+    title = models.CharField(max_length=50, db_index=True, verbose_name='Наименование услуги')
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title
 
     def get_absolute_url(self):
         return reverse('service', kwargs={'service_id': self.pk})
@@ -50,3 +48,9 @@ class Service(models.Model):
     class Meta:
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+class MasterService(models.Model):
+    Master = models.ForeignKey(Master, on_delete=models.PROTECT)
+    Services = models.ForeignKey(Service, on_delete=models.PROTECT)
+    duration = models.DurationField(verbose_name='Продолжительность')
+    price = models.IntegerField(verbose_name='Цена')
