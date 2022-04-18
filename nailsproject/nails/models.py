@@ -27,7 +27,7 @@ class Master(models.Model):
     description = models.TextField(max_length=500, verbose_name='О мастере')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
     def get_absolute_url(self):
         return reverse('master', kwargs={'master_id': self.pk})
@@ -37,12 +37,10 @@ class Master(models.Model):
         verbose_name_plural = 'Мастера'
 
 class Service(models.Model):
-    title = models.CharField(max_length=50, verbose_name='Наименование услуги')
-    duration = models.DurationField(verbose_name='Продолжительность')
-    price = models.IntegerField(verbose_name='Цена')
+    title = models.CharField(max_length=50, db_index=True, verbose_name='Наименование услуги')
 
     def __str__(self):
-        return f'{self.title}'
+        return self.title
 
     def get_absolute_url(self):
         return reverse('service', kwargs={'service_id': self.pk})
@@ -50,3 +48,9 @@ class Service(models.Model):
     class Meta:
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+class MasterService(models.Model):
+    Master = models.ForeignKey(Master, on_delete=models.PROTECT)
+    Services = models.ForeignKey(Service, on_delete=models.PROTECT)
+    duration = models.DurationField(verbose_name='Продолжительность')
+    price = models.IntegerField(verbose_name='Цена')
