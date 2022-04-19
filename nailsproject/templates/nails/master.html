@@ -1,7 +1,7 @@
 {% extends 'nails/base.html' %}
 {% block content %}
 <div class="container mt-4 mb-4">
-    {% for m in master %}
+    {% for m in master.pk %}
         <img src="{{m.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="150px" height="200px" alt="{{m.name}}">
         <h4>{{m.name}}</h4>
         <p>{{m.grade}}
