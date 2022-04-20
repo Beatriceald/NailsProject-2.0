@@ -52,5 +52,5 @@ class Service(models.Model):
 class MasterService(models.Model):
     Master = models.ForeignKey(Master, on_delete=models.PROTECT)
     Services = models.ForeignKey(Service, on_delete=models.PROTECT)
-    duration = models.DurationField(verbose_name='Продолжительность')
+    duration = models.IntegerField(verbose_name='Продолжительность в минутах')
     price = models.IntegerField(verbose_name='Цена')

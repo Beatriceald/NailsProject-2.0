@@ -1,22 +1,36 @@
 {% extends 'nails/base.html' %}
+{% load nails_tags %}
 {% block content %}
 <div class="container mt-4 mb-4">
-    {% for m in master.pk %}
-        <img src="{{m.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="150px" height="200px" alt="{{m.name}}">
-        <h4>{{m.name}}</h4>
-        <p>{{m.grade}}
-        {{m.experience}}</p>
-        <p>{{m.rating}}</p>
-        <p>{{m.description}}</p>
-    {% endfor %}
-    {{master.content}}
-    <a href="#"><h5>Услуги</h5></a>
-    <ul>
-        {% for s in service %}
-            <li>{{s.title}}</li>
-        {% endfor %}
-    </ul>
-    <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>
-    <h5>Отзывы(кол-во):</h5>
+    <img src="{{master.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="200px" height="250px" alt="{{m.name}}">
+    <h4>{{master.name}}</h4>
+    <p>{{master.grade}}
+       {{master.experience}}</p>
+    <p>{{master.rating}}</p>
+    <p>{{master.description}}</p>
 </div>
+<div class="container mt-5 mb-4"> <!-- ПЕРЕДЕЛАТЬ КОНТЕЙНЕР ПОД ГОРИЗОНТАЛЬНУЮ ТАБЛИЦУ С УЧЁТОМ PeopleService -->
+    <h5><a href="{% url 'services' %}">Услуги</a></h5>  <!-- Сделать надпись обтекаемой под фотку -->
+    <div class="row">
+        <div class="col-sm">
+            <ul>
+                {% servs as serv %}
+                    {% for s in serv %}
+                        <li>{{s.title}}</li>
+                    {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm">
+            {% get_people_services as people_serv %}
+                <ul> <!-- Запрос для услуг по master.id НАЛАДИТЬ! -->
+                    {% for ps in people_serv %}
+                        {{ps.price}}
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+    <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>
+</div>
+    <h5>Отзывы(кол-во):</h5>
+
 {% endblock %}
