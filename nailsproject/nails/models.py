@@ -54,3 +54,6 @@ class MasterService(models.Model):
     Services = models.ForeignKey(Service, on_delete=models.PROTECT)
     duration = models.IntegerField(verbose_name='Продолжительность в минутах')
     price = models.IntegerField(verbose_name='Цена')
+
+    def __str__(self):
+        return f'{self.duration}  {self.price}' 

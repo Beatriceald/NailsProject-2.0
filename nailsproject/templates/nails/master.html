@@ -21,12 +21,12 @@
             </ul>
         </div>
         <div class="col-sm">
-            {% get_people_services as people_serv %}
-                <ul> <!-- Запрос для услуг по master.id НАЛАДИТЬ! -->
-                    {% for ps in people_serv %}
-                        {{ps.price}}
-                    {% endfor %}
-                </ul>
+           
+                {% for ps in people_service %}
+                    <ul>
+                        <li>{{ps}}</li>
+                    </ul>
+                {% endfor %}
         </div>
     </div>
     <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>
