@@ -6,7 +6,7 @@
     <h4>{{master.name}}</h4>
     <p>{{master.grade}}
        {{master.experience}}</p>
-    <p>{{master.rating}}</p>
+    <p>Рейтинг: {{master.rating}}</p>
     <p>{{master.description}}</p>
 </div>
 <div class="container mt-5 mb-4"> <!-- ПЕРЕДЕЛАТЬ КОНТЕЙНЕР ПОД ГОРИЗОНТАЛЬНУЮ ТАБЛИЦУ С УЧЁТОМ PeopleService -->
@@ -21,12 +21,21 @@
             </ul>
         </div>
         <div class="col-sm">
-           
-                {% for ps in people_service %}
-                    <ul>
-                        <li>{{ps}}</li>
-                    </ul>
-                {% endfor %}
+    
+                <ul>
+                    {% for mas in master_service %}
+                    <li>{{mas.duration}}</li>
+                    {% endfor %}
+                </ul>
+            
+        </div>
+        <div class="col-sm">
+                <ul>
+                    {% for mas in master_service %}
+                    <li>{{mas.price}}</li>
+                    {% endfor %}
+                </ul>
+            
         </div>
     </div>
     <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>

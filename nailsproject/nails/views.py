@@ -26,11 +26,10 @@ def show_master(request, master_id):  # Отображение страницы 
     
     master = get_object_or_404(Master, pk=master_id)
     service = Service.objects.all()
-    people_service = MasterService.objects.all()
-    
+    master_service = MasterService.objects.filter(master__id=master_id).order_by('services__id', 'services')
 
     context = {
-        'people_service': people_service,
+        'master_service': master_service,
         'master': master,
         'service': service,
         'title': 'Подробнее о мастере',

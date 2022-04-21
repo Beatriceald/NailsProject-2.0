@@ -50,10 +50,14 @@ class Service(models.Model):
         verbose_name_plural = 'Услуги'
 
 class MasterService(models.Model):
-    Master = models.ForeignKey(Master, on_delete=models.PROTECT)
-    Services = models.ForeignKey(Service, on_delete=models.PROTECT)
+    master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Мастер')
+    services = models.ForeignKey(Service, on_delete=models.PROTECT, verbose_name='Услуга')
     duration = models.IntegerField(verbose_name='Продолжительность в минутах')
     price = models.IntegerField(verbose_name='Цена')
 
     def __str__(self):
-        return f'{self.duration}  {self.price}' 
+        return f'{self.duration} {self.price}' 
+
+    class Meta:
+        verbose_name = 'Продолжительность и цена услуги'
+        verbose_name_plural = 'Продолжительность и цена услуги'
