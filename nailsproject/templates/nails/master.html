@@ -1,18 +1,20 @@
 {% extends 'nails/base.html' %}
 {% load nails_tags %}
 {% block content %}
-<div class="container mt-4 mb-4">
-    <img src="{{master.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="200px" height="250px" alt="{{m.name}}">
+<div class="container mt-4 mb-4 mb-4">
+    <img src="{{master.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="200px" height="300px" alt="{{m.name}}">
     <h4>{{master.name}}</h4>
     <p>{{master.grade}}
        {{master.experience}}</p>
     <p>Рейтинг: {{master.rating}}</p>
-    <p>{{master.description}}</p>
+    <p>{{master.description}}</p></br>
 </div>
+<div style="clear:both"></div>
+<h4 class="ms-4"><a href="{% url 'services' %}">Услуги</a></h4> <!-- Сделать надпись обтекаемой под фотку -->
 <div class="container mt-5 mb-4"> <!-- ПЕРЕДЕЛАТЬ КОНТЕЙНЕР ПОД ГОРИЗОНТАЛЬНУЮ ТАБЛИЦУ С УЧЁТОМ PeopleService -->
-    <h5><a href="{% url 'services' %}">Услуги</a></h5>  <!-- Сделать надпись обтекаемой под фотку -->
     <div class="row">
         <div class="col-sm">
+            <h6>Наименование</h6>  
             <ul>
                 {% servs as serv %}
                     {% for s in serv %}
@@ -21,25 +23,26 @@
             </ul>
         </div>
         <div class="col-sm">
-    
+            <h6>Продолжительность</h6>
                 <ul>
                     {% for mas in master_service %}
-                    <li>{{mas.duration}}</li>
+                    <li>{{mas.duration}}{{duration}}</li>
                     {% endfor %}
                 </ul>
             
         </div>
         <div class="col-sm">
+            <h6>Цена</h6>
                 <ul>
                     {% for mas in master_service %}
-                    <li>{{mas.price}}</li>
+                    <li>{{mas.price}}{{price}}</li>
                     {% endfor %}
                 </ul>
             
         </div>
     </div>
-    <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>
+    <a class="btn btn-outline-primary mb-4 me-4 mt-3" href="{% url 'reg' %}" role="button">Записаться</a>
 </div>
-    <h5>Отзывы(кол-во):</h5>
+    <h5 class="ms-4">Отзывы(кол-во):</h5>
 
 {% endblock %}

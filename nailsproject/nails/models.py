@@ -61,3 +61,4 @@ class MasterService(models.Model):
     class Meta:
         verbose_name = 'Продолжительность и цена услуги'
         verbose_name_plural = 'Продолжительность и цена услуги'
+

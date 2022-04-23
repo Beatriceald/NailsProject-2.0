@@ -27,21 +27,31 @@ def show_master(request, master_id):  # Отображение страницы 
     master = get_object_or_404(Master, pk=master_id)
     service = Service.objects.all()
     master_service = MasterService.objects.filter(master__id=master_id).order_by('services__id', 'services')
-
+    
     context = {
         'master_service': master_service,
         'master': master,
         'service': service,
         'title': 'Подробнее о мастере',
+        'duration': ' минут',
+        'price': ' руб',
         'nbar': 'masters'
     }
     return render(request, 'nails/master.html', context=context)
 
 
 def show_services(request):
-    return HttpResponse("Отображение услуг")
 
-def show_reg(request):
-    return HttpResponse("Отображение записи")
+    context = {
+        'nbar': 'services'
+    }
 
+    return render(request, 'nails/services.html', context=context)
 
+def show_reg(request, master_id):
+    master = Master.objects.all()
+    service = Service.objects.all()
+    context = {
+        'nbar': 'reg',
+    }
+    return render(request, 'nails/registration.html', context=context)

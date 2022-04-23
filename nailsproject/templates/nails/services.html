@@ -1,0 +1,12 @@
+{% extends 'nails/base.html' %}
+{% load nails_tags %}
+{% block content %}
+<div class="ms-4 mt-4">
+    <ul>
+    {% servs as services %}
+        {% for s in services %}
+            <li>{{s.title}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
