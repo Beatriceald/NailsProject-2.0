@@ -56,9 +56,10 @@ class MasterService(models.Model):
     price = models.IntegerField(verbose_name='Цена')
 
     def __str__(self):
-        return f'{self.duration} {self.price}' 
+        return f'{self.master} {self.services}' 
 
     class Meta:
         verbose_name = 'Продолжительность и цена услуги'
         verbose_name_plural = 'Продолжительность и цена услуги'
+
 

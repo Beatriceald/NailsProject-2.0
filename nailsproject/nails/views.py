@@ -48,10 +48,12 @@ def show_services(request):
 
     return render(request, 'nails/services.html', context=context)
 
-def show_reg(request, master_id):
+def show_reg(request):
     master = Master.objects.all()
     service = Service.objects.all()
     context = {
+        'master': master,
+        'service': service,
         'nbar': 'reg',
     }
     return render(request, 'nails/registration.html', context=context)

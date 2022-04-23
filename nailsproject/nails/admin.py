@@ -8,15 +8,15 @@ class mainpageAdmin(admin.ModelAdmin):
 
 class masterAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'photo', 'grade', 'experience', 'rating', 'description')
-    list_display_links = ('id', 'name')
+    list_display_links = ('name',)
 
 class serviceAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
-    list_display_links = ('id', 'title')
+    list_display_links = ('title',)
 
 class masterservicesAdmin(admin.ModelAdmin):
     list_display = ('id', 'master', 'services', 'duration', 'price')
-
+    list_display_links = ('master',)
 
 admin.site.register(MasterService, masterservicesAdmin)
 admin.site.register(Service, serviceAdmin)
