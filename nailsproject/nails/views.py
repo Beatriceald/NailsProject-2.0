@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+
+from nails.forms import AddRegistrationForm
 from . models import *
 
 def index(request):
@@ -49,11 +51,16 @@ def show_services(request):
     return render(request, 'nails/services.html', context=context)
 
 def show_reg(request):
-    master = Master.objects.all()
-    service = Service.objects.all()
-    context = {
-        'master': master,
-        'service': service,
-        'nbar': 'reg',
-    }
-    return render(request, 'nails/registration.html', context=context)
+    form = AddRegistrationForm()
+    return render(request, 'nails/registration.html', {'form': form, 'title': 'Запись', 'nbar': 'reg',})
+
+
+# def show_reg(request):
+#     master = Master.objects.all()
+#     service = Service.objects.all()
+#     context = {
+#         'master': master,
+#         'service': service,
+#         'nbar': 'reg',
+#     }
+#     return render(request, 'nails/registration.html', context=context)
