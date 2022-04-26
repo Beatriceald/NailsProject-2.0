@@ -5,6 +5,7 @@ urlpatterns = [
     path('', index, name='home'),
     path('masters/', show_masters, name='masters'),
     path('services/', show_services, name='services'),
-    path('registration/', show_reg, name='reg'),
+    path('registration/', RegistrationCreateView.as_view(), name='reg'),
     path('master/<int:master_id>/', show_master, name='master'),
+    path('confirmation/', confirmation, name='confirmation')
 ]
