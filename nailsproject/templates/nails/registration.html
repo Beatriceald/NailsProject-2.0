@@ -1,13 +1,24 @@
 {% extends 'nails/base.html' %}
+<head>
+  <style type="text/css">
+    .field {clear:both; text-align:right; line-height:25px;}
+    label {float:left; padding-right:10px;}
+    .main {float:left}
+  </style>
+</head>
 {% block content %}
 <div class="mx-auto" style="width: 200px;">
     <h3>Запись</h3>
 </div>
-<div class="ms-4">
 <form action="{% url 'reg' %}" method="post">
     {% csrf_token %}
+    <div class="main">
+    <div class="field">
     {{form.as_p}}
-    <button type="submit">Добавить</button>
-</form>
-</div>
+    </div>
+    </div>
+<button class="btn btn-primary mt-2 ms-4" type="submit">Добавить</button>
+</form>      
+    
+
 {% endblock %}

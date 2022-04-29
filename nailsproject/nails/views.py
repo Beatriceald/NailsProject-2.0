@@ -67,6 +67,9 @@ class RegistrationCreateView(CreateView):
 
 def confirmation(request):
     return render(request, 'nails/confirmation.html', context= {'nbar': 'reg'})
+
+
+    
 # def show_reg(request):
 #     master = Master.objects.all()
 #     service = Service.objects.all()

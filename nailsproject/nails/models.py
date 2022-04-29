@@ -65,10 +65,10 @@ class MasterService(models.Model):
 class Registration(models.Model):
     phone_number = models.CharField(max_length=12, verbose_name='Номер телефона')
     users_name = models.CharField(max_length=100, verbose_name='ФИО')
-    reg_date = models.DateField(null=True, )
-    reg_time = models.TimeField(null=True)
-    master = models.ForeignKey(Master, on_delete=models.PROTECT)
-    service = models.ManyToManyField(Service)
+    reg_date = models.DateField(null=True, verbose_name='Дата записи')
+    reg_time = models.TimeField(null=True, verbose_name='Время записи')
+    master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Выбор мастера')
+    service = models.ManyToManyField(Service, verbose_name='Выбор услуг')
 
     def __str__(self):
         return self.users_name
