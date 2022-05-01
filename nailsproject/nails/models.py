@@ -71,7 +71,7 @@ class Registration(models.Model):
     service = models.ManyToManyField(Service, verbose_name='Выбор услуг')
 
     def get_absolute_url(self):
-        return reverse('confirmation', kwargs={'registration_id': self.pk})
+        return reverse('confirmation', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.users_name

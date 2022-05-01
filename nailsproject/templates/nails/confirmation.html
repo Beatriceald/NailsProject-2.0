@@ -1,5 +1,11 @@
 {% extends 'nails/base.html' %}
 {% block content %}
-<h5 class="ms-4 mt-4">Вы успешно записались!</h5>
-
+<div class="container ms-4 mt-4">
+<h5 class="ms-3">{{confirmation}}, Вы успешно записались!</h5><br>
+<p>{{master}}{{confirmation.master}}</p>
+<p>{{service}}{{confirmation.service.all}}</p>
+<p>{{duration}}{{confirmation.duration}}</p>
+<p>{{price}}{{confirmation.price}}</p>
+<a class="btn btn-outline-primary mt-4 me-4 px-4 py-2" href="{% url 'home' %}" role="button">ОК</a>
+</div>
 {% endblock %}

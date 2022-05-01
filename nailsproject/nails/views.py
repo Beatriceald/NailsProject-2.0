@@ -68,13 +68,18 @@ class RegistrationCreateView(CreateView):
 class ShowRegistration(DetailView):
     model = Registration
     template_name = 'nails/confirmation.html'
-    #slug_url_kwarg = 'registration_slug'
     context_object_name = 'confirmation'
+
+# https://djbook.ru/rel1.9/topics/db/queries.html#lookups-that-span-relationships
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "Подтверждение"
+        context['title'] = "Подтверждение записи"
         context['nbar'] = "reg"
+        context['master'] = "Запись к мастеру: "
+        context['service'] = "Запись на услуги: "
+        context['duration'] = "Продолжительность сеанса: "
+        context['price'] = "Стоимость услуг: "
         return context
 
 # def confirmation(request):
