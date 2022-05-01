@@ -1,24 +1,53 @@
 {% extends 'nails/base.html' %}
-<head>
-  <style type="text/css">
-    .field {clear:both; text-align:right; line-height:25px;}
-    label {float:left; padding-right:10px;}
-    .main {float:left}
-  </style>
-</head>
 {% block content %}
-<div class="mx-auto" style="width: 200px;">
+<div class="mx-auto mt-2" style="width: 200px;">
     <h3>Запись</h3>
 </div>
-<form action="{% url 'reg' %}" method="post">
+<div class="container ms-4 mt-4">
+  <form action="{% url 'reg' %}" method="post">
     {% csrf_token %}
-    <div class="main">
-    <div class="field">
-    {{form.as_p}}
+    <div class="row">
+      {{ form.non_field_errors }}
+      <div class="col-md-4">
+        <div class="fieldWrapper">
+          {{ form.master.errors }}
+          <label for="id_master">Выбор мастера:</label>
+          {{ form.master }} </br> </br>
+        </div>
+        <div class="fieldWrapper">
+          {{ form.service.errors }}
+          <label for="id_service">Выбор услуг:</label>
+          {{ form.service }}
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="fieldWrapper">
+          {{ form.reg_date.errors }}
+          <label for="id_reg_date">Выбор даты:</label>
+          {{ form.reg_date }} </br> </br>
+        </div>
+        <div class="fieldWrapper">
+          {{ form.reg_time.errors }}
+          <label for="id_reg_time">Выбор времени:</label>
+          {{ form.reg_time }}
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="fieldWrapper">
+          {{ form.users_name.errors }}
+          <label for="id_users_name">Ваше имя:</label>
+          {{ form.users_name }} <br> <br>
+        </div>
+        <div class="fieldWrapper">
+          {{ form.phone_number.errors }}
+          <label for="id_phone_number">Ваш номер телефона:</label>
+          {{ form.phone_number }}
+        </div>
+      </div>
     </div>
+    <div class='d-flex justify-content-end'>
+      <button class="btn btn-primary pull-right" type="submit">Добавить</button>
     </div>
-<button class="btn btn-primary mt-2 ms-4" type="submit">Добавить</button>
-</form>      
-    
-
+  </form>
+</div>
 {% endblock %}

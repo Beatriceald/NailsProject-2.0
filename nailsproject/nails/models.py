@@ -70,6 +70,9 @@ class Registration(models.Model):
     master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Выбор мастера')
     service = models.ManyToManyField(Service, verbose_name='Выбор услуг')
 
+    def get_absolute_url(self):
+        return reverse('confirmation', kwargs={'registration_id': self.pk})
+
     def __str__(self):
         return self.users_name
 
