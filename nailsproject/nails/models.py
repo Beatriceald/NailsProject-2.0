@@ -68,7 +68,7 @@ class Registration(models.Model):
     reg_date = models.DateField(null=True, verbose_name='Дата записи')
     reg_time = models.TimeField(null=True, verbose_name='Время записи')
     master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Выбор мастера')
-    service = models.ManyToManyField(Service, verbose_name='Выбор услуг')
+    service = models.ManyToManyField(Service, related_name='reg', verbose_name='Выбор услуг')
 
     def get_absolute_url(self):
         return reverse('confirmation', kwargs={'pk': self.pk})

@@ -2,10 +2,16 @@
 {% block content %}
 <div class="container ms-4 mt-4">
 <h5 class="ms-3">{{confirmation}}, Вы успешно записались!</h5><br>
-<p>{{master}}{{confirmation.master}}</p>
-<p>{{service}}{{confirmation.service.all}}</p>
-<p>{{duration}}{{confirmation.duration}}</p>
-<p>{{price}}{{confirmation.price}}</p>
+<h><b>{{master}}</b>{{confirmation.master}}</p>
+<p><b>{{service}}</b>
+    {% for rs in reg_serv %}
+    <ul>
+        <li>{{rs}}</li>
+    </ul>
+    {% endfor %}
+</p>
+<p><b>{{duration}}</b>{{confirmation.duration.filter}}</p>
+<p><b>{{price}}</b>{{confirmation.price}}</p>
 <a class="btn btn-outline-primary mt-4 me-4 px-4 py-2" href="{% url 'home' %}" role="button">ОК</a>
 </div>
 {% endblock %}

@@ -54,7 +54,7 @@ def show_services(request):
 #     form = AddRegistrationForm()
 #     return render(request, 'nails/registration.html', {'form': form, 'title': 'Запись', 'nbar': 'reg',})
 
-class RegistrationCreateView(CreateView):
+class RegistrationCreateView(CreateView): # создание формы-регистрации
     form_class = AddRegistrationForm
     template_name = 'nails/registration.html'
     #success_url = reverse_lazy('confirmation')
@@ -65,12 +65,15 @@ class RegistrationCreateView(CreateView):
         context['nbar'] = 'reg'
         return context
 
-class ShowRegistration(DetailView):
+class ShowRegistration(DetailView): # вывод информации после регистрации
     model = Registration
     template_name = 'nails/confirmation.html'
-    context_object_name = 'confirmation'
+    context_object_name = 'confirmation' 
 
-# https://djbook.ru/rel1.9/topics/db/queries.html#lookups-that-span-relationships
+
+    #servs = Service.objects.filter(reg__id=Registration.pk) 
+
+    # https://djbook.ru/rel1.9/topics/db/queries.html#lookups-that-span-relationships
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -80,6 +83,7 @@ class ShowRegistration(DetailView):
         context['service'] = "Запись на услуги: "
         context['duration'] = "Продолжительность сеанса: "
         context['price'] = "Стоимость услуг: "
+        context['reg_serv'] = Service.objects.filter(reg__id=self.object.id)
         return context
 
 # def confirmation(request):
