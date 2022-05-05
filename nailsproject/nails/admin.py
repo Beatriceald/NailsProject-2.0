@@ -9,6 +9,7 @@ class mainpageAdmin(admin.ModelAdmin):
 class masterAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'photo', 'grade', 'experience', 'rating', 'description')
     list_display_links = ('name',)
+    prepopulated_fields = {"slug": ("name",)}
 
 class serviceAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
