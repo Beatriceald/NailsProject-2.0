@@ -11,7 +11,7 @@
       {{m.experience}}</p>
       <p>{{m.rating}}</p>
           <a class="btn btn-outline-primary mb-4 me-4" href="{{ m.get_absolute_url }}" role="button">Подробнее о мастере</a>
-          <a class="btn btn-outline-primary mb-4 me-4" href="#" role="button">Записаться</a>
+          <a class="btn btn-outline-primary mb-4 me-4" href="{% url 'reg' %}" role="button">Записаться</a>
           <a class="btn btn-outline-primary mb-4" href="#" role="button">Отзывы</a></br></br></br>
     {% endfor %}
 </div>

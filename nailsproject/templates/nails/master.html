@@ -16,10 +16,9 @@
         <div class="col-sm">
             <h6>Наименование</h6>  
             <ul>
-                {% servs as serv %}
-                    {% for s in serv %}
-                        <li>{{s.title}}</li>
-                    {% endfor %}
+                {% for mas in master_service %}
+                <li>{{mas}}</li>
+                {% endfor %}
             </ul>
         </div>
         <div class="col-sm">
@@ -28,8 +27,7 @@
                     {% for mas in master_service %}
                     <li>{{mas.duration}}{{duration}}</li>
                     {% endfor %}
-                </ul>
-            
+                </ul>    
         </div>
         <div class="col-sm">
             <h6>Цена</h6>
@@ -38,7 +36,6 @@
                     <li>{{mas.price}}{{price}}</li>
                     {% endfor %}
                 </ul>
-            
         </div>
     </div>
     <a class="btn btn-outline-primary mb-4 me-4 mt-3" href="{% url 'reg' %}" role="button">Записаться</a>

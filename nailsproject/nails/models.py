@@ -20,6 +20,7 @@ class MainPage(models.Model):
 # Create your models here.
 class Master(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя мастера')
+    #slug = models.SlugField(max_length=100, unique=True, db_index=True, verbose_name='URL')
     photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Фото мастера')
     grade = models.CharField(max_length=50, verbose_name='Занимаемая должность', null=True)
     experience = models.CharField(max_length=50, verbose_name='Стаж', null=True)
@@ -56,7 +57,7 @@ class MasterService(models.Model):
     price = models.IntegerField(verbose_name='Цена')
 
     def __str__(self):
-        return f'{self.master} {self.services}' 
+        return f'{self.services}' 
 
     class Meta:
         verbose_name = 'Продолжительность и цена услуги'
