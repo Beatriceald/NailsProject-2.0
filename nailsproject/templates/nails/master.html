@@ -25,7 +25,11 @@
             <h6>Продолжительность</h6>
                 <ul>
                     {% for mas in master_service %}
-                    <li>{{mas.duration}}{{duration}}</li>
+                        {% if mas.services.title == 'Дизайн' or mas.services.title == 'Наращивание' %}
+                            <li>{{mas.duration}}{{duration}}{{part}}</li>
+                        {% else %}
+                            <li>{{mas.duration}}{{duration}}</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>    
         </div>
@@ -33,7 +37,11 @@
             <h6>Цена</h6>
                 <ul>
                     {% for mas in master_service %}
-                    <li>{{mas.price}}{{price}}</li>
+                        {% if mas.services.title == 'Дизайн' or mas.services.title == 'Наращивание' %}
+                            <li>{{mas.price}}{{price}}{{part}}</li>
+                        {% else %}
+                            <li>{{mas.price}}{{price}}</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
         </div>

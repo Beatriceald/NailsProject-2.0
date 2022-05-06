@@ -31,7 +31,7 @@ class Master(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('master', kwargs={'master_id': self.pk})
+        return reverse('master', kwargs={'master_slug': self.slug})
 
     class Meta:
         verbose_name = 'Мастер'
@@ -55,7 +55,7 @@ class MasterService(models.Model):
     services = models.ForeignKey(Service, on_delete=models.PROTECT, verbose_name='Услуга')
     duration = models.IntegerField(verbose_name='Продолжительность в минутах')
     price = models.IntegerField(verbose_name='Цена')
-    registration = models. 
+    registration = models.ManyToManyField('Registration', blank=True)
         #ManyToManyField или ForeignKey!!!
     def __str__(self):
         return f'{self.services}' 
@@ -69,8 +69,6 @@ class Registration(models.Model):
     users_name = models.CharField(max_length=100, verbose_name='ФИО')
     reg_date = models.DateField(null=True, verbose_name='Дата записи')
     reg_time = models.TimeField(null=True, verbose_name='Время записи')
-    # master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Выбор мастера')
-    # service = models.ManyToManyField(Service, related_name='reg', verbose_name='Выбор услуг')
 
     def get_absolute_url(self):
         return reverse('confirmation', kwargs={'pk': self.pk})

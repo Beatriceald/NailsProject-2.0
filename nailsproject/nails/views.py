@@ -24,11 +24,11 @@ def show_masters(request): # Отображение страницы с выбо
     return render(request, 'nails/masters.html', context=context)
 
 
-def show_master(request, master_id):  # Отображение страницы мастера
+def show_master(request, master_slug):  # Отображение страницы мастера
     
-    master = get_object_or_404(Master, pk=master_id)
+    master = get_object_or_404(Master, slug=master_slug)
     service = Service.objects.all()
-    master_service = MasterService.objects.filter(master__id=master_id).order_by('services__id', 'services')
+    master_service = MasterService.objects.filter(master__slug=master_slug).order_by('services__id', 'services')
     
     context = {
         'master_service': master_service,
@@ -37,7 +37,8 @@ def show_master(request, master_id):  # Отображение страницы 
         'title': 'Подробнее о мастере',
         'duration': ' минут',
         'price': ' руб',
-        'nbar': 'masters'
+        'part': ' / 1 ноготь',
+        'nbar': 'masters',
     }
     return render(request, 'nails/master.html', context=context)
 

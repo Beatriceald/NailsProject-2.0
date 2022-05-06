@@ -20,7 +20,7 @@ class masterservicesAdmin(admin.ModelAdmin):
     list_display_links = ('master',)
 
 class registrationAdmin(admin.ModelAdmin):
-    list_display = ('id', 'users_name', 'phone_number', 'reg_date', 'reg_time', 'master')
+    list_display = ('id', 'users_name', 'phone_number', 'reg_date', 'reg_time')
     list_display_links = ('users_name', 'reg_date', 'reg_time')
 
 admin.site.register(MasterService, masterservicesAdmin)
