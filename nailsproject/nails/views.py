@@ -37,7 +37,7 @@ def show_master(request, master_slug):  # Отображение страниц�
         'title': 'Подробнее о мастере',
         'duration': ' минут',
         'price': ' руб',
-        'part': ' / 1 ноготь',
+        'part': ' / ноготь',
         'nbar': 'masters',
     }
     return render(request, 'nails/master.html', context=context)
