@@ -1,13 +1,13 @@
 {% extends 'nails/base.html' %}
 {% block content %}
     {% for m in main_page %}
-        <div class="mx-auto mt-2" style="width: 200px;">
+        <div class="mx-auto mt-2 mb-4" style="width: 200px;">
           <h3>{{m.title}}</h3>
         </div>
-        <div class="ms-4"> <!-- Текст над фото -->
+        <div class="ms-4 my-4"> <!-- Текст над фото -->
           <p>{{m.description_upper|linebreaksbr}}</p>
         </div>
-        <div class="mx-auto" style="width: 200px;">
+        <div class="mx-auto mb-4" style="width: 200px;">
           <h4>Примеры ниш</h4>
         </div>
             <div class="container mb-3"> <!-- Контейнер с изображениями -->
@@ -23,14 +23,14 @@
                     </div>
                 </div>
             </div>
+            <div class="container my-4"> <!-- Контейнер с кнопками -->
+              <h6>Вы можете познакомиться с:</h6>
+              <a class="btn btn-primary my-2 me-4" href="{% url 'masters' %}" role="button">Выбор мастера</a>
+              <a class="btn btn-primary my-2 me-4" href="{% url 'services' %}" role="button">Услуги</a>
+              <a class="btn btn-primary my-2" href="{% url 'reg' %}" role="button">Запись</a>
+            </div>
         <div class="ms-4"> <!-- Текст под фото -->
           <p>{{m.description_under|linebreaksbr}}</p>
-        </div>
-        <div class="container mb-4"> <!-- Контейнер с кнопками -->
-          <h6>Вы можете познакомиться с:</h6>
-          <a class="btn btn-primary mt-2 me-4" href="{% url 'masters' %}" role="button">Выбор мастера</a>
-          <a class="btn btn-primary mt-2 me-4" href="{% url 'services' %}" role="button">Услуги</a>
-          <a class="btn btn-primary mt-2" href="{% url 'reg' %}" role="button">Запись</a>
         </div>
     {% endfor %}
 {% endblock %}
