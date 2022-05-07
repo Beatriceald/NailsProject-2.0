@@ -5,7 +5,7 @@
 </div>
 <div class="container mt-5 mb-4">
     {% for m in master %}
-      <img src="{{m.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="200px" height="200px" alt="{{m.name}}">
+      <img src="{{m.photo.url}}" class="img-fluid img-thumbnail rounded mb-3 me-4 float-start" width="125px" height="100px" alt="{{m.name}}">
       <h4><a href="{{ m.get_absolute_url }}">{{m.name}}</a></h4>
       <p>{{m.grade}}
       {{m.experience}}</p>
