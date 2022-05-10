@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, MultipleChoiceField, SelectMultiple
 from .models import *
 
 class DateInput(forms.DateInput):
@@ -15,8 +15,10 @@ class AddRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Registration
-        fields = ['reg_date', 'reg_time', 'users_name', 'phone_number']
+        fields = ['master', 'service', 'reg_date', 'reg_time', 'users_name', 'phone_number']
+        service = MasterService.objects.all()
         widgets = {
             'reg_date': DateInput(),
             'reg_time': TimeInput(),
+            'service': SelectMultiple
         }

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView
 from nails.forms import AddRegistrationForm
@@ -66,6 +66,7 @@ class RegistrationCreateView(CreateView): # создание формы-реги
         context['nbar'] = 'reg'
         return context
 
+
 class ShowRegistration(DetailView): # вывод информации после регистрации
     model = Registration
     template_name = 'nails/confirmation.html'
@@ -84,7 +85,8 @@ class ShowRegistration(DetailView): # вывод информации после
         context['service'] = "Запись на услуги: "
         context['duration'] = "Продолжительность сеанса: "
         context['price'] = "Стоимость услуг: "
-        context['reg_serv'] = Service.objects.filter(reg__id=self.object.id)
+        context['reg_serv'] = Service.objects.filter(registration__id=self.object.id)
+        context['masterservice'] = MasterService.objects.filter(registration__id=self.object.id)
         return context
 
 # def confirmation(request):

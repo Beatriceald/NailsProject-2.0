@@ -10,8 +10,20 @@
     </ul>
     {% endfor %}
 </p>
-<p><b>{{duration}}</b>{{confirmation.duration.filter}}</p>
-<p><b>{{price}}</b>{{confirmation.price}}</p>
+<p><b>{{duration}}</b>
+    {% for ms in masterservice %}
+    <ul>
+        <li>{{ms.duration}}</li>
+    </ul>
+    {% endfor %}
+</p>
+<p><b>{{price}}</b>
+    {% for ms in masterservice %}
+    <ul>
+        <li>{{ms.price}}</li>
+    </ul>
+    {% endfor %}
+</p>
 <a class="btn btn-outline-primary mt-4 me-4 px-4 py-2" href="{% url 'home' %}" role="button">ОК</a>
 </div>
 {% endblock %}

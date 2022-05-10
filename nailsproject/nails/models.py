@@ -55,17 +55,19 @@ class MasterService(models.Model):
     services = models.ForeignKey(Service, on_delete=models.PROTECT, verbose_name='Услуга')
     duration = models.IntegerField(verbose_name='Продолжительность в минутах')
     price = models.IntegerField(verbose_name='Цена')
-    registration = models.ManyToManyField('Registration', blank=True)
         #ManyToManyField или ForeignKey!!!
     def __str__(self):
-        return f'{self.services}' 
+        return f'{self.master} {self.services}' 
 
     class Meta:
         verbose_name = 'Продолжительность и цена услуги'
         verbose_name_plural = 'Продолжительность и цена услуги'
 
 class Registration(models.Model):
-    phone_number = models.CharField(max_length=12, verbose_name='Номер телефона')
+    master = models.ForeignKey(Master, on_delete=models.PROTECT, verbose_name='Мастер')
+    service = models.ManyToManyField(Service, verbose_name='Услуга')
+    masterservice = models.ManyToManyField(MasterService)
+    phone_number = models.CharField(max_length=11, verbose_name='Номер телефона')
     users_name = models.CharField(max_length=100, verbose_name='ФИО')
     reg_date = models.DateField(null=True, verbose_name='Дата записи')
     reg_time = models.TimeField(null=True, verbose_name='Время записи')
