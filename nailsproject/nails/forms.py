@@ -20,5 +20,5 @@ class AddRegistrationForm(forms.ModelForm):
         widgets = {
             'reg_date': DateInput(),
             'reg_time': TimeInput(),
-            'service': SelectMultiple
+            'service': forms.CheckboxSelectMultiple
         }
